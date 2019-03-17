@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<center>
+    <h1>论文导入页面</h1>
+    <form action="/user/executeImport" method="post" enctype="multipart/form-data">
+        <input type="file" name="articleFile" class="required" id="articleFile"><br>
+        <button id="btn_import" onclick="return false"> 导入</button>
+        <br><br>
+    </form>
+</center>
+</body>
+<script src="js/jquery-3.3.1.min.js"></script>
+<script>
+    $("#btn_import").click(function () {
+        //避免重复点击,上传多次文件
+        $("button").attr("disabled", "disabled");
+        var formData = new FormData();
+        formData.append("articleFile", $("#articleFile")[0].files[0]);
+        $.ajax({
+            url: '/user/executeImport',
+            type: 'post',
+            data: formData,
+            contentType: false,
+            processData: false,
+            cache: false,
+            success: function (data) {
+                window.location.href = '/user/importArticle';
+                alert(JSON.stringify(data))
+            }
+        });
+    });
+
+</script>
+</html>

@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cn.jxhun.pojo.IrenMapper">
+    <select id="selectIren" resultType="cn.jxhun.pojo.Iren">
+        select *
+        from iren;
+    </select>
+
+    <update id="updateUser" parameterType="cn.jxhun.pojo.Iren">
+        update iren
+        set xingming=#{xingming}
+        where s_id = #{sId};
+    </update>
+
+    <insert id="insertUser" parameterType="cn.jxhun.pojo.Iren">
+        insert into iren(xingming, s_id)
+        values (#{xingming}, #{sId});
+    </insert>
+
+</mapper>
